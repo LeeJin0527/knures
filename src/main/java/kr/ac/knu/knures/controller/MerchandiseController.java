@@ -1,5 +1,6 @@
 package kr.ac.knu.knures.controller;
 
+import kr.ac.knu.knures.constant.LocationCategory;
 import kr.ac.knu.knures.dto.CommunityBoardReplyDTO;
 import kr.ac.knu.knures.dto.MerchandiseDTO;
 import kr.ac.knu.knures.dto.ReplyDTO;
@@ -39,11 +40,13 @@ public class MerchandiseController {
 
     // 물품 등록
     @GetMapping("/register")
-    public String register() {
+    public String register(Model model) {
         String loginEmail = loginInfo.getEmail();
         if (loginEmail == null) {
             return "redirect:/merchandise/list";
         }
+
+        model.addAttribute("loginInfo", loginInfo);
         return "register_merchandise";
     }
 
@@ -62,8 +65,10 @@ public class MerchandiseController {
     public String modify(Long mno, Model model) {
         MerchandiseDTO dto = service.getOne(mno);
         model.addAttribute("merchandise", dto);
+        model.addAttribute("loginInfo", loginInfo);
         return "modify_merchandise";
     }
+
    @GetMapping("/delete")
    public String delete(Long mno) {
        MerchandiseDTO dto = service.getOne(mno);
@@ -74,6 +79,65 @@ public class MerchandiseController {
     @GetMapping("/list")
     public String list(Model model) {
         List<MerchandiseDTO> dtos = service.getListAll();
+
+        List<WishListDTO> wishListDTOS;
+        if (loginInfo != null && loginInfo.getEmail() != null)
+        {
+            wishListDTOS = wishListService.findAllByMember(loginInfo.getEmail());
+
+            dtos = dtos.stream().map(m -> {
+                Optional<WishListDTO> res = wishListDTOS.stream()
+                        .filter(w -> w.getMno().equals(m.getMno()))
+                        .findFirst();
+
+                m.setWish(res.isPresent());
+                return m;
+            }).collect(Collectors.toList());
+        }
+
+        model.addAttribute("merchandises", dtos);
+        model.addAttribute("loginInfo", loginInfo);
+
+        return "list_merchandise";
+    }
+
+    @GetMapping("/oneroom_list")
+    public String oneRoomList(Model model) {
+        LocationCategory oneRoomList[] = { LocationCategory.ONE_ROOM_FRONT, LocationCategory.ONE_ROOM_BACK };
+        List<MerchandiseDTO> dtos = new ArrayList<>();
+        for (LocationCategory oneRoom : oneRoomList) {
+            dtos.addAll(service.findAllByLCategory(oneRoom));
+        }
+
+        List<WishListDTO> wishListDTOS;
+        if (loginInfo != null && loginInfo.getEmail() != null)
+        {
+            wishListDTOS = wishListService.findAllByMember(loginInfo.getEmail());
+
+            dtos = dtos.stream().map(m -> {
+                Optional<WishListDTO> res = wishListDTOS.stream()
+                        .filter(w -> w.getMno().equals(m.getMno()))
+                        .findFirst();
+
+                m.setWish(res.isPresent());
+                return m;
+            }).collect(Collectors.toList());
+        }
+
+        model.addAttribute("merchandises", dtos);
+        model.addAttribute("loginInfo", loginInfo);
+
+        return "list_merchandise";
+    }
+
+    @GetMapping("/dormitory_list")
+    public String dormitoryList(Model model) {
+        LocationCategory dormitoryList[] = { LocationCategory.DORMITORY_JAJU, LocationCategory.DORMITORY_CHANGJO,
+                LocationCategory.DORMITORY_CHUNGWOON, LocationCategory.DORMITORY_NOAK, LocationCategory.DORMITORY_KUNMEYON,LocationCategory.DORMITORY_KYUNGAE };
+        List<MerchandiseDTO> dtos = new ArrayList<>();
+        for (LocationCategory dormitory : dormitoryList ) {
+            dtos.addAll(service.findAllByLCategory(dormitory));
+        }
 
         List<WishListDTO> wishListDTOS;
         if (loginInfo != null && loginInfo.getEmail() != null)

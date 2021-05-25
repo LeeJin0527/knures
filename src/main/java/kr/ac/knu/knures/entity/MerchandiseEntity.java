@@ -1,5 +1,6 @@
 package kr.ac.knu.knures.entity;
 
+import kr.ac.knu.knures.constant.LocationCategory;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -22,8 +23,9 @@ public class MerchandiseEntity extends BaseEntity {
     private String title;
     @Column (length = 100, nullable = false)
     private String category;
-    @Column (length = 100, nullable = false)
-    private String lcategory;
+
+    @Enumerated(EnumType.STRING)
+    private LocationCategory lcategory;
     @Column
     private Long price; //가격
     @Column(length = 1000 , nullable = false)

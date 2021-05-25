@@ -1,5 +1,6 @@
 package kr.ac.knu.knures.service;
 
+import kr.ac.knu.knures.constant.LocationCategory;
 import kr.ac.knu.knures.dto.MerchandiseDTO;
 import kr.ac.knu.knures.entity.MemberEntity;
 import kr.ac.knu.knures.entity.MerchandiseEntity;
@@ -14,6 +15,7 @@ public interface MerchandiseService {
     void register(MerchandiseDTO dto);
     void delete(MerchandiseDTO dto);
     List<MerchandiseDTO> findAllByIds(List<Long> ids);
+    List<MerchandiseDTO> findAllByLCategory(LocationCategory locationCategory);
 
     //DAO 를 가져와서 보여줌
     default MerchandiseEntity dtoToEntity(MerchandiseDTO dto) {

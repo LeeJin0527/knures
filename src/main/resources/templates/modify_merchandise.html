@@ -26,9 +26,9 @@
                         <div class="col-lg">
                             <h3>물품 정보</h3>
                                 <div class="col-md-12 form-group">
-                                    <img th:src="${merchandise.imgURL1}" id="imgURL1"/>
-                                    <img th:src="${merchandise.imgURL2}" id="imgURL2"/>
-                                    <img th:src="${merchandise.imgURL3}" id="imgURL3"/>
+                                    <img th:src="${merchandise.imgURL1.isEmpty()} ? '/assets/img/no_image.jpeg' : ${merchandise.imgURL1}" id="imgURL1" style="width: 300px;"/>
+                                    <img th:src="${merchandise.imgURL2.isEmpty()} ? '/assets/img/no_image.jpeg' : ${merchandise.imgURL2}" id="imgURL2" style="width: 300px;"/>
+                                    <img th:src="${merchandise.imgURL3.isEmpty()} ? '/assets/img/no_image.jpeg' : ${merchandise.imgURL3}" id="imgURL3" style="width: 300px;"/>
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <input type="file" accept="image/*" class="form-control" id="uploadFiles" multiple name="uploadImgs" placeholder="이미" />
@@ -54,16 +54,16 @@
                                     </select>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <select class="country_select" id = "lcategory" name ="lcategory">
-                                        <option value="none">위치</option>
-                                        <option value="front">정문원룸</option>
-                                        <option value="back">후문원룸</option>
-                                        <option value="dormitory1">기숙사-청운</option>
-                                        <option value="dormitory2">기숙사-노악</option>
-                                        <option value="dormitory3">기숙사-창조</option>
-                                        <option value="dormitory4">기숙사-경애</option>
-                                        <option value="dormitory5">기숙사-근면</option>
-                                        <option value="dormitory6">기숙사-자주</option>
+                                    <select class="country_select" id = "lcategory" name ="lcategory" th:field="*{merchandise.lcategory}">
+                                        <option value="">위치</option>
+                                        <option value="ONE_ROOM_FRONT">정문원룸</option>
+                                        <option value="ONE_ROOM_BACK">후문원룸</option>
+                                        <option value="DORMITORY_CHUNGWOON">기숙사-청운</option>
+                                        <option value="DORMITORY_NOAK">기숙사-노악</option>
+                                        <option value="DORMITORY_CHANGJO">기숙사-창조</option>
+                                        <option value="DORMITORY_KYUNGAE">기숙사-경애</option>
+                                        <option value="DORMITORY_KUNMEYON">기숙사-근면</option>
+                                        <option value="DORMITORY_JAJU">기숙사-자주</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12 form-group p_star">

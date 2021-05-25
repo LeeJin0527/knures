@@ -29,48 +29,14 @@
         <!-- product list part start-->
         <section class="product_list section_padding">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-<!--                        <div class="product_sidebar">-->
-<!--                            <div class="single_sedebar">-->
-<!--                                <form action="#">-->
-<!--                                    <input type="text" name="#" placeholder="Search keyword">-->
-<!--                                    <i class="ti-search"></i>-->
-<!--                                </form>-->
-<!--                            </div>-->
-
-<!--                            <div class="single_sedebar">-->
-<!--                                <div class="select_option">-->
-<!--                                    <div class="select_option_list">Category <i class="right fas fa-caret-down"></i> </div>-->
-<!--                                    <div class="select_option_dropdown">-->
-<!--                                        <p><a href="#">카테고리</a></p>-->
-<!--                                        <p><a href="#">공구</a></p>-->
-<!--                                        <p><a href="#">주방용품</a></p>-->
-<!--                                        <p><a href="#">기타</a></p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                            <div class="single_sedebar">-->
-<!--                                <div class="select_option">-->
-<!--                                    <div class="select_option_list">Type <i class="right fas fa-caret-down"></i> </div>-->
-<!--                                    <div class="select_option_dropdown">-->
-<!--                                        <p><a href="#">상태</a></p>-->
-<!--                                        <p><a href="#">대여</a></p>-->
-<!--                                        <p><a href="#">나눔</a></p>-->
-<!--                                        <p><a href="#">판매</a></p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-                            <th:block th:if="${loginInfo != null and loginInfo.email != null}">
-                                <a href="/merchandise/register" class="genric-btn primary e-large" data-th-marginheight="10">regist</a>
-                            </th:block>
-                        </div>
+                <th:block th:if="${loginInfo != null and loginInfo.email != null}">
+                    <div class="col-md-4" style="margin: 10px 0;">
+                        <a href="/merchandise/register" class="genric-btn primary e-large" data-th-marginheight="10">regist</a>
                     </div>
+                </th:block>
                     <div class="col-md-8">
                         <div class="product_list">
-                            <div class="row">
+                            <div class="row" >
 
                                 <div class="col-lg-6 col-sm-6" th:each="m : ${merchandises}">
                                     <div class="single_product_item">
@@ -102,7 +68,6 @@
                                         </th:block>
                                     </div>
                                 </div>
-
 
                             </div>
                         </div>

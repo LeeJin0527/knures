@@ -1,5 +1,6 @@
 package kr.ac.knu.knures.service;
 
+import kr.ac.knu.knures.constant.LocationCategory;
 import kr.ac.knu.knures.dto.CommunityBoardDTO;
 import kr.ac.knu.knures.dto.MerchandiseDTO;
 import kr.ac.knu.knures.entity.MerchandiseEntity;
@@ -47,6 +48,12 @@ public class MerchandiseServiceImpl implements MerchandiseService{
     @Override
     public List<MerchandiseDTO> getListAll() {
         return repository.findAll().stream().map(entity -> entityToDto(entity, entity.getWriter()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MerchandiseDTO> findAllByLCategory(LocationCategory locationCategory) {
+        return repository.findAllByLcategory(locationCategory).stream().map(entity -> entityToDto(entity, entity.getWriter()))
                 .collect(Collectors.toList());
     }
 
