@@ -21,6 +21,7 @@ public class MerchandiseDTO {
     private Long price; //price
     private String state;
     private String category;
+    private String lcategory;
     private String content;
     private String imgURL1;
     private String imgURL2;

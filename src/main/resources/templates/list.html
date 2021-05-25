@@ -6,8 +6,8 @@
 <th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
 
     <th:block th:fragment="content">
-
-        <h1 style="font-family:굴림; color: black;">Community List Page
+<div  data-background="/assets/img/background3.jpg">
+        <h1 style=" color: white; margin-left:550px"> Community
             <th:block th:if="${loginInfo.email != null}">
                 <span>
                     <a th:href="@{/Community/register}" class="btn btn-outline-primary">
@@ -44,7 +44,7 @@
 
         <table class="table table-striped">
             <thead>
-            <tr>
+            <tr align="center">
                 <th scope="col">Title</th>
                 <th scope="col">Writer</th>
                 <th scope="col">Regdate</th>
@@ -52,7 +52,7 @@
             </thead>
             <tbody>
 
-            <tr th:each="dto : ${result.dtoList}" >
+            <tr  align = "center" th:each="dto : ${result.dtoList}" >
                 <td>
                     <a th:href="@{/Community/detail(gno = ${dto.gno},
                     page= ${result.page},
@@ -116,7 +116,7 @@
                 </div>
             </div>
         </div>
-
+</div>
         <script th:inline="javascript">
 
             var msg = [[${msg}]];

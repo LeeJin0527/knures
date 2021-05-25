@@ -10,13 +10,13 @@ import java.util.stream.IntStream;
 public class MemberServiceTest {
     @Autowired
     private MemberService service;
-
-    @Test
-    public void testVerify() {
-        IntStream.rangeClosed(1, 10).forEach(i -> {
-            String email = "user"+(i+1)+"@aaa.com";
-            service.verify(email);
-        });
-
-    }
+//
+//    @Test
+//    public void testVerify() {
+//        IntStream.rangeClosed(1, 10).forEach(i -> {
+//            String email = "user"+(i+1)+"@aaa.com";
+//            service.verify(email);
+//        });
+//
+//    }
 }

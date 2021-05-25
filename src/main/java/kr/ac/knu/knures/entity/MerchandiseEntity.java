@@ -22,6 +22,8 @@ public class MerchandiseEntity extends BaseEntity {
     private String title;
     @Column (length = 100, nullable = false)
     private String category;
+    @Column (length = 100, nullable = false)
+    private String lcategory;
     @Column
     private Long price; //가격
     @Column(length = 1000 , nullable = false)

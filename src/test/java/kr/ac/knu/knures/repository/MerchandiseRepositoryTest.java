@@ -37,20 +37,20 @@ public class MerchandiseRepositoryTest {
                 .imgURL3(null)
                 .build();
 
-        repository.save(entity);
-        MerchandiseEntity entity1 = MerchandiseEntity.builder()
-                .writer(members.get(idx))
-                .title("나눔합니다  ")
-                .price(500L)
-                .content("라면 나눠드림")
-                .category("etc")
-                .state("share")
-                .imgURL1("https://www.google.com/imgres?imgurl=https%3A%2F%2Fimagescdn.gettyimagesbank.com%2F500%2F201708%2Fjv10951098.jpg&imgrefurl=https%3A%2F%2Fwww.gettyimagesbank.com%2Fview%2F%25EB%2583%2584%25EB%25B9%2584%25EB%259D%25BC%25EB%25A9%25B4%2Fjv10951098&tbnid=6MRvWZg8NAEqoM&vet=12ahUKEwiv9set5crwAhXJIaYKHQPGD48QMygAegUIARDZAQ..i&docid=soQElkPYEgjmwM&w=500&h=375&q=%EB%9D%BC%EB%A9%B4%EC%9D%B4%EB%AF%B8%EC%A7%80&ved=2ahUKEwiv9set5crwAhXJIaYKHQPGD48QMygAegUIARDZAQ")
-                .imgURL2("https://www.google.com/imgres?imgurl=https%3A%2F%2Fimagescdn.gettyimagesbank.com%2F500%2F201708%2Fjv10951098.jpg&imgrefurl=https%3A%2F%2Fwww.gettyimagesbank.com%2Fview%2F%25EB%2583%2584%25EB%25B9%2584%25EB%259D%25BC%25EB%25A9%25B4%2Fjv10951098&tbnid=6MRvWZg8NAEqoM&vet=12ahUKEwiv9set5crwAhXJIaYKHQPGD48QMygAegUIARDZAQ..i&docid=soQElkPYEgjmwM&w=500&h=375&q=%EB%9D%BC%EB%A9%B4%EC%9D%B4%EB%AF%B8%EC%A7%80&ved=2ahUKEwiv9set5crwAhXJIaYKHQPGD48QMygAegUIARDZAQ")
-                .imgURL3(null)
-                .build();
-
-        repository.save(entity1);
+//        repository.save(entity);
+//        MerchandiseEntity entity1 = MerchandiseEntity.builder()
+//                .writer(members.get(idx))
+//                .title("판합니다  ")
+//                .price(180000L)
+//                .content("상주화폐 ")
+//                .category("etc")
+//                .state("sell")
+//                .imgURL1("")
+//                .imgURL2(null)
+//                .imgURL3(null)
+//                .build();
+//
+//        repository.save(entity1);
 
 
 
