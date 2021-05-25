@@ -1,24 +1,26 @@
 <!doctype html>
 <html lang="zxx" xmlns:th="http://www.thymeleaf.org">
-
+<style>
+    @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+</style>
 <th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
     <th:block th:fragment="content">
 
     <!-- slider Area Start-->
-    <div class="slider-area ">
+    <div class="slider-area "  data-background="/assets/img/background6.jpeg">
         <!-- Mobile Menu -->
-        <div class="single-slider slider-height2 d-flex align-items-center" data-background="/assets/img/hero/category.jpg">
+
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>커뮤니티</h2>
+                            <h2 style="font-family:굴림; color: black; margin-top:30px">커뮤니티</h2>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
+
     <!-- slider Area End-->
 
     <!--================Single Product Area =================-->
@@ -62,7 +64,7 @@
             </th:block>
         </div>
     </div>
-
+    </div>
     </th:block>
 </th:block>
 

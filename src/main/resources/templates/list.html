@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<style>
+    @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+</style>
 <th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
 
     <th:block th:fragment="content">
 
-        <h1 class="mt-4">Community List Page
+        <h1 style="font-family:굴림; color: black;">Community List Page
             <th:block th:if="${loginInfo.email != null}">
                 <span>
                     <a th:href="@{/Community/register}" class="btn btn-outline-primary">
