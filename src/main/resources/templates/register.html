@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
+
+    <th:block th:fragment="content">
+
+        <h1 class="mt-4">Community Register Page</h1>
+
+        <form th:action="@{/Community/register}" th:method="post">
+            <div class="form-group">
+                <label >Title</label>
+                <input type="text" class="form-control" name="title" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label >Content</label>
+                <textarea class="form-control" rows="5" name="content"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </th:block>
+
+</th:block>

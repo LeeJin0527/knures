@@ -1,0 +1,129 @@
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<style>
+    @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+</style>
+<link rel="stylesheet" href="style1.css">
+<th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
+    <th:block th:fragment="content">
+        <!-- slider Area Start-->
+        <div class="slider-area slider-height2 d-flex align-items-center" data-background="/assets/img/background.jpg">
+            <!-- Mobile Menu -->
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap ">
+                                <h2 style="font-family:굴림;color: white; margin-left:100px; margin-top:-250px ">
+                                    회원 등록
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <section class="checkout_area section_padding " >
+                <div class="container">
+                    <div class="returning_customer">
+                        <div class="row">
+                            <div class="col-lg">
+                                <h3 style="font-family:굴림; color: white; padding-left: 30px">
+                                    회원 가입
+                                </h3>
+
+
+                                <!--                            <form id="login" action="/register" class="input-group"  method="post" novalidate="novalidate">-->
+                                <!--                                <input type="text" class="input-field" placeholder="User name or Email" required>-->
+
+                                <!--                                <input type="password" class="input-field" placeholder="Enter Password" required>-->
+                                <!--                                <input type="checkbox" class="checkbox"><span>Remember Password</span>-->
+                                <!--                                <button class="submit">Login</button>-->
+                                <!--                            </form>-->
+
+                                <form class="row contact_form"  action="/register" method="post" novalidate="novalidate">
+                                    <div class="col-md-12 form-group p_star">
+                                        <div style="display:flex">
+                                            <input style="flex:1; font-family:굴림" type="text" class="form-control" id="email" name="email" placeholder="이메일" required/>
+                                            @
+                                            <input style="flex:1 ; margin-bottom: 10px; font-family:굴림" type="text" class="form-control" value="knu.ac.kr" placeholder="이메일" required/>
+                                        </div>
+                                        <button type="button" id="sendAuthNumBtn" class="genric-btn info-border circle" >인증번호 발송</button>
+                                    </div>
+                                    <div id="divAuthNum" class="col-md-12 form-group">
+                                        <input style="font-family:굴림; margin-bottom: 10px"  type="text" class="form-control" id="authNum" placeholder="인증번호" required/>
+                                        <button type="button" id="checkAuthNumBtn" class="genric-btn info-border circle">인증번호 확인</button>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <input style="font-family:굴림" type="password" class="form-control" id="password" name="password" placeholder="비번" required />
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <input style="font-family:굴림" type="text" class="form-control" id="name" name="name" placeholder="이름" required/>
+                                    </div>
+                                    <button id="submitBtn" class="genric-btn success circle" disabled type="submit">완료</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- slider Area End-->
+
+    </th:block>
+</th:block>
+
+<script>
+    $(document).ready(function() {
+        $("#sendAuthNumBtn").click(function() {
+            const formData = new FormData();
+            formData.append("address", $("#email")[0].value);
+
+
+            $.ajax({
+                url : "/mail",
+                processData: false,
+                contentType: false,
+                data: formData,
+                type: 'POST',
+                dataType: 'json',
+                success: function(result) {
+                    alert("이메일 발송에 성공했습니다!");
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert("이메일 발송에 실패했습니다.");
+                }
+            });
+        });
+
+        $("#checkAuthNumBtn").click(function() {
+            const formData = new FormData();
+            formData.append("email", $("#email")[0].value);
+            formData.append("num", $("#authNum")[0].value);
+
+            $.ajax({
+                url : "/check_mail",
+                processData: false,
+                contentType: false,
+                data: formData,
+                type: 'POST',
+                dataType: 'json',
+                success: function(result) {
+                    // 인증번호 발송 버튼 안되게 처리
+                    $("#sendAuthNumBtn").attr("disabled", "disabled");
+
+                    // 인증번호 입력 부분 삭제
+                    $("#divAuthNum").remove();
+
+                    // 완료 버튼 누를 수 있게 수정
+                    $("#submitBtn").attr("disabled", null);
+                    alert("인증에 성공했습니다!")
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert("인증에 실패했습니다.");
+                }
+            });
+        });
+    })
+</script>
+
+</html>

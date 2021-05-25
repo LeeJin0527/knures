@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
+    <th:block th:fragment="content">
+
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <!-- Mobile Menu -->
+        <div class="single-slider slider-height2 d-flex align-items-center" data-background="/assets/img/hero/category.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>커뮤니티</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider Area End-->
+
+    <!--================Single Product Area =================-->
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="single_product_text text-center">
+                        <h3>[[${board.title}]]</h3>
+                        <h5>작성자 : [[${board.writerName}]]</h5>
+                        <p>
+                            [[${board.content}]]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-top-border">
+        <div class="row d-flex justify-content-center">
+            <!--view-->
+            <div class="col-md-8" th:each="reply : ${replies}">
+                <div class="single-defination">
+                    <span class="mb-20">[[${reply.replier}]]</span>
+                    <button th:if="${loginInfo.email == reply.replierEmail}"
+                            onclick="click_delete_button.bind(this)()"
+                            id = "deleteReplyBtn" th:attr="bno=${reply.bno}"
+                            class="genric-btn danger-border radius">삭제</button>
+                    <p>[[${reply.text}]]</p>
+                </div>
+            </div>
+            <!--input-->
+            <th:block th:if="${loginInfo != null and loginInfo.email != null}">
+            <div class="col-md-8">
+                <div class="mt-10">
+                    <textarea id="replyText" class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" required=""></textarea>
+                    <button id="addReplyBtn" class="genric-btn warning circle arrow">등록<span class="lnr lnr-arrow-right"></span></button>
+                </div>
+            </div>
+            </th:block>
+        </div>
+    </div>
+
+    </th:block>
+</th:block>
+
+<script th:inline="javascript">
+    $(document).ready(function() {
+        const gno = [[${board.gno}]];
+
+        $("#addReplyBtn").click(function() {
+            const formData = new FormData();
+            formData.append("gno", gno);
+            formData.append("text", $("#replyText")[0].value);
+
+            $.ajax({
+                url : "/communityReply/register",
+                processData: false,
+                contentType: false,
+                data: formData,
+                type: 'POST',
+                dataType: 'json',
+                success: function(result) {
+                    alert("댓글 등록에 성공했습니다!");
+                    location.href = location.href;
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert("댓글 등록에 실패했습니다.");
+                }
+            });
+        })
+    })
+
+    function click_delete_button() {
+        const bno = $(this).attr("bno");
+        const formData = new FormData();
+        formData.append("bno", bno);
+
+        $.ajax({
+            url : "/communityReply/delete",
+            processData: false,
+            contentType: false,
+            data: formData,
+            type: 'POST',
+            dataType: 'json',
+            success: function(result) {
+                alert("댓글이 삭제되었습니다!");
+                location.href = location.href;
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert("댓글 삭제에 실패했습니다.");
+            }
+        });
+    }
+</script>
+</html>

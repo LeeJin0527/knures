@@ -1,0 +1,124 @@
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<style>
+    @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+</style>
+<th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
+    <th:block th:fragment="content">
+        <!-- slider Area Start-->
+        <div class="slider-area " data-background="/assets/img/background.jpg">
+            <!-- Mobile Menu -->
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2 style="font-family:굴림;color: white; margin-left:100px; margin-top:-250px ">
+                                    물 등록
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        <!-- slider Area End-->
+
+        <section class="checkout_area section_padding">
+            <div class="container">
+                <div class="returning_customer">
+                    <div class="row">
+                        <div class="col-lg">
+                            <h2 style="font-family:굴림; color: white; padding-left: 30px">물품 정보</h2>
+                                <div class="col-md-12 form-group">
+                                    <img src="" id="imgURL1"/>
+                                    <img src="" id="imgURL2"/>
+                                    <img src="" id="imgURL3"/>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input style=" margin-bottom: 30px" type="file" accept="image/*" class="form-control" id="uploadFiles" multiple name="uploadImgs" placeholder="이미" />
+                                    <button class="genric-btn success circle" id="uploadBtn">업로드</button>
+                                </div>
+                            <form class="row contact_form" action="/merchandise/register" method="post" novalidate="novalidate">
+                                <input type="hidden" name="imgURL1" />
+                                <input type="hidden" name="imgURL2" />
+                                <input type="hidden" name="imgURL3" />
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="title" name="title" placeholder="제목" />
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <select class="country_select" id = "category" name ="category">
+                                        <option value="none">카테고리</option>
+                                        <option value="tools">공구</option>
+                                        <option value="kitchen_tool">주방용품</option>
+                                        <option value="etc">기타</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <select class="country_select" id = "state" name = "state">
+                                        <option value="none">상태</option>
+                                        <option value="rent">대여</option>
+                                        <option value="share">나눔</option>
+                                        <option value="sell">판매</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="price" name="price" placeholder="가격" />
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <textarea class="form-control" name="content" id="content" rows="1"
+                                              placeholder="글" style="resize:none;height: 500px;"></textarea>
+                                </div>
+                                <button class="genric-btn success circle" type="submit">완료</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+    </th:block>
+</th:block>
+
+<script>
+    $(document).ready(function() {
+        $("#uploadBtn").click(function() {
+            const formData = new FormData();
+            const inputFile = $("input[type='file']");
+            const files = inputFile[0].files;
+
+            for (let i=0; i<files.length; i++) {
+                formData.append("uploadFiles", files[i]);
+            }
+
+            $.ajax({
+                url : "/uploadImage",
+                processData: false,
+                contentType: false,
+                data: formData,
+                type: 'POST',
+                dataType: 'json',
+                success: function(result) {
+                    if (result.imgURL1) {
+                        $("input[name=imgURL1]").attr("value", "/m_img/" + result.imgURL1);
+                        $("#imgURL1").attr("src", "/m_img/" + result.imgURL1);
+                    }
+
+                    if (result.imgURL2) {
+                        $("input[name=imgURL2]").attr("value", "/m_img/" + result.imgURL2);
+                        $("#imgURL2").attr("src", "/m_img/" + result.imgURL2);
+                    }
+
+                    if (result.imgURL3) {
+                        $("input[name=imgURL3]").attr("value", "/m_img/" + result.imgURL3);
+                        $("#imgURL3").attr("src", "/m_img/" + result.imgURL3);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert("이미지 업로드에 실패했습니다");
+                }
+            });
+        });
+    });
+</script>
+
+</html>

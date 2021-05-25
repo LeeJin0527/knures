@@ -1,0 +1,190 @@
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
+    <th:block th:fragment="content">
+        <!-- slider Area Start-->
+        <div class="slider-area ">
+            <!-- Mobile Menu -->
+            <div class="single-slider slider-height2 d-flex align-items-center" data-background="/assets/img/hero/category.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>물품 지도</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+
+        <div style="width:100%;height:350px; display: flex;margin-top: 50px">
+            <div style="width: 50%;height: 350px; flex: 1;">
+                <button id="mv_fl" onclick="goFirstLocation()"
+                        style="width: 70%;height: 15%;
+                        margin-left: 15%;margin-top: 10%; color: #0b0b0b">
+                    기본위치</button>
+                <button id="mv_myl" onclick="getCurrentPosBtn()"
+                        style="width: 70%;height: 15%;
+                        margin-left: 15%;margin-top: 10px; color: #0b0b0b">
+                    현재위치</button>
+            </div>
+            <div id="map" style="width: 50%;height: 350px; flex: 1;"></div>
+        </div>
+
+    </th:block>
+</th:block>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de2f3bbf8a813a465874a34624714171"></script>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(36.37764560668607, 128.14467107909022), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+
+    // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
+    var positions = [
+        {
+            title: '<textarea style="padding: 10px;"> 경북대학교 창조관 기숙사 </textarea>',
+            content: '<textarea style="padding: 10px;">[[${merchandises}]]</textarea>',
+            latlng: new kakao.maps.LatLng(36.37746626963179, 128.14363766563207),
+            clicked: false
+        },
+        {
+            title: '<textarea style="padding: 10px;"> 경북대학교 자주관 기숙사 </textarea>',
+            content: '<textarea style="padding: 10px;">자주관 목록</textarea>',
+            latlng: new kakao.maps.LatLng(36.376885500021594, 128.14359015981555),
+            clicked: false
+        },
+        {
+            title: '<textarea style="padding: 10px;"> 경북대학교 근면관 기숙사 </textarea>',
+            content: '<textarea style="padding: 10px;">근면관 목록</textarea>',
+            latlng: new kakao.maps.LatLng(36.377009787972675, 128.14307937574517),
+            clicked: false
+        },
+        {
+            title: '<textarea style="padding: 10px;"> 경북대학교 경애관 기숙사 </textarea>',
+            content: '<textarea style="padding: 10px;">경애관 목록</textarea>',
+            latlng: new kakao.maps.LatLng(36.37745004981488, 128.14274315238552),
+            clicked: false
+        },
+        {
+            title: '<textarea style="padding: 10px;"> 경북대학교 노악관 기숙사 </textarea>',
+            content: '<textarea style="padding: 10px;">노악관 목록</textarea>',
+            latlng: new kakao.maps.LatLng(36.37769400935698, 128.1422034682623),
+            clicked: false
+        },
+        {
+            title: '<textarea style="padding: 10px;"> 경북대학교 청운관 기숙사 </textarea>',
+            content: '<textarea style="padding: 10px;">청운관 목록</textarea>',
+            latlng: new kakao.maps.LatLng(36.37827817747336, 128.14213121889614),
+            clicked: false
+        }
+    ];
+
+    // 마커 이미지의 이미지 주소입니다
+    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+    for (var i = 0; i < positions.length; i ++) {
+
+        // 마커 이미지의 이미지 크기 입니다
+        var imageSize = new kakao.maps.Size(24, 35);
+
+        // 마커 이미지를 생성합니다
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: positions[i].latlng, // 마커를 표시할 위치
+            image: markerImage // 마커 이미지
+        });
+        var infowindow = new kakao.maps.InfoWindow({
+            content: positions[i].title // 인포윈도우에 표시할 내용
+        });
+
+        var s_infowindow = new kakao.maps.InfoWindow({
+            content: positions[i].content // 인포윈도우에 표시할 내용
+        });
+
+
+        // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+        // 이벤트 리스너로는 클로저를 만들어 등록합니다
+        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, s_infowindow, i));
+
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+        function makeOverListener(map, marker, infowindow) {
+            return function () {
+                infowindow.open(map, marker);
+            };
+        }
+
+        // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+        function makeOutListener(infowindow) {
+            return function () {
+                infowindow.close();
+            };
+        }
+        // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+        function makeClickListener(map, marker, s_infowindow, i) {
+            return function () {
+                positions[i].clicked = !positions[i].clicked;
+                if(positions[i].clicked)
+                    s_infowindow.open(map, marker);
+                else
+                    s_infowindow.close();
+            };
+        }
+    }
+
+    function goFirstLocation(){
+        // 현재 위치 받아오기
+        var firstPos = new kakao.maps.LatLng(36.37764560668607, 128.14467107909022); // 지도의 중심좌표
+        // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
+        map.panTo(firstPos);
+
+        // 마커 생성
+        var marker = new kakao.maps.Marker({
+            position: firstPos
+        });
+
+        // 기존에 마커가 있다면 제거
+        marker.setMap(null);
+        marker.setMap(map);
+    };
+
+    function locationLoadSuccess(pos){
+        // 현재 위치 받아오기
+        var currentPos = new kakao.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
+
+        // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
+        map.panTo(currentPos);
+
+        // 마커 생성
+        var marker = new kakao.maps.Marker({
+            position: currentPos
+        });
+
+        // 기존에 마커가 있다면 제거
+        marker.setMap(null);
+        marker.setMap(map);
+    };
+
+    function locationLoadError(pos){
+        alert('위치 정보를 가져오는데 실패했습니다.');
+    };
+
+    // 위치 가져오기 버튼 클릭시
+    function getCurrentPosBtn(){
+        navigator.geolocation.getCurrentPosition(locationLoadSuccess,locationLoadError);
+    };
+
+</script>
+</html>

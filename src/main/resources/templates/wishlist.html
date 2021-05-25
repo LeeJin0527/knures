@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<style>
+    @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+</style>
+<th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
+    <th:block th:fragment="content">
+
+        <!-- slider Area Start-->
+        <div class="slider-area " data-background="/assets/img/product_overlay.png">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2 style="font-family:굴림; color: white; padding-left: 30px ;margin-top:30px">
+                                    Wish List
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        <!-- slider Area End-->
+
+        <!-- product list part start-->
+        <section class="product_list section_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+<!--                        <div class="product_sidebar">-->
+<!--                            <div class="single_sedebar">-->
+<!--                                <form action="#">-->
+<!--                                    <input type="text" name="#" placeholder="Search keyword">-->
+<!--                                    <i class="ti-search"></i>-->
+<!--                                </form>-->
+<!--                            </div>-->
+
+<!--                            <div class="single_sedebar">-->
+<!--                                <div class="select_option">-->
+<!--                                    <div class="select_option_list">Category <i class="right fas fa-caret-down"></i> </div>-->
+<!--                                    <div class="select_option_dropdown">-->
+<!--                                        <p><a href="#">카테고리</a></p>-->
+<!--                                        <p><a href="#">공구</a></p>-->
+<!--                                        <p><a href="#">주방용품</a></p>-->
+<!--                                        <p><a href="#">기타</a></p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="single_sedebar">-->
+<!--                                <div class="select_option">-->
+<!--                                    <div class="select_option_list">Type <i class="right fas fa-caret-down"></i> </div>-->
+<!--                                    <div class="select_option_dropdown">-->
+<!--                                        <p><a href="#">상태</a></p>-->
+<!--                                        <p><a href="#">대여</a></p>-->
+<!--                                        <p><a href="#">나눔</a></p>-->
+<!--                                        <p><a href="#">판매</a></p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+                            <th:block th:if="${loginInfo.email != null}">
+                                <a href="/merchandise/register" class="genric-btn primary e-large">regist</a>
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="product_list">
+                            <div class="row">
+
+                                <div class="col-lg-6 col-sm-6" th:each="m : ${merchandises}">
+                                    <div class="single_product_item">
+                                        <th:block>
+                                            <img th:src="${(m.imgURL1 != null && !#strings.isEmpty(m.imgURL1))
+                                                ? m.imgURL1
+                                                : '/assets/img/categori/product1.png'}" alt="" class="img-fluid">
+                                        </th:block>
+
+                                        <h3>
+                                            <a th:href="@{/merchandise/detail(mno=${m.mno})}">
+                                                [[${m.title}]]
+                                            </a>
+                                            <th:block th:if="${m.writerEmail} == ${loginInfo.email}">
+                                                <a th:href="@{/merchandise/modify(mno=${m.mno})}" class="genric-btn primary-border small">수정</a>
+                                                <a th:href="@{/merchandise/delete(mno=${m.mno})}" class="genric-btn primary-border small">삭제</a>
+                                            </th:block>
+                                        </h3>
+                                        <span>[[${m.writer}]]</span>
+                                        <span style="color: #1e7e34; margin: 0 10px">[[${m.state}]]</span>
+                                        <span>[[${m.price}]]원</span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+        <!-- product list part end-->
+    </th:block>
+</th:block>
+
+</html>
