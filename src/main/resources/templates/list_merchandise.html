@@ -34,11 +34,11 @@
                         <a href="/merchandise/register" class="genric-btn primary e-large" data-th-marginheight="10">regist</a>
                     </div>
                 </th:block>
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="product_list">
                             <div class="row" >
 
-                                <div class="col-lg-6 col-sm-6" th:each="m : ${merchandises}">
+                                <div class="col-lg-4 col-sm-4" th:each="m : ${merchandises}">
                                     <div class="single_product_item">
                                         <th:block>
                                             <img th:src="${(m.imgURL1 != null && !#strings.isEmpty(m.imgURL1))
