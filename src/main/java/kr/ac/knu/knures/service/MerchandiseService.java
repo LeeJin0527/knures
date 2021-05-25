@@ -16,6 +16,7 @@ public interface MerchandiseService {
     void delete(MerchandiseDTO dto);
     List<MerchandiseDTO> findAllByIds(List<Long> ids);
     List<MerchandiseDTO> findAllByLCategory(LocationCategory locationCategory);
+    List<String> findAllByLCategoryToName(LocationCategory locationCategory);
 
     //DAO 를 가져와서 보여줌
     default MerchandiseEntity dtoToEntity(MerchandiseDTO dto) {

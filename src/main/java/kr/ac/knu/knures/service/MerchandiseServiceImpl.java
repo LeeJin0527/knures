@@ -58,6 +58,12 @@ public class MerchandiseServiceImpl implements MerchandiseService{
     }
 
     @Override
+    public List<String> findAllByLCategoryToName(LocationCategory locationCategory) {
+        return repository.findAllByLcategory(locationCategory).stream().map(entity -> entityToName(entity))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<String> getListNameAll() {
         return repository.findAll().stream().map(entity -> entityToName(entity))
                 .collect(Collectors.toList());

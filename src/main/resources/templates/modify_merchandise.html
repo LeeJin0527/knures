@@ -1,93 +1,96 @@
 <html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
-
+<style>
+    @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+</style>
 <th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
     <th:block th:fragment="content">
         <!-- slider Area Start-->
-        <div class="slider-area ">
+        <div class="slider-area " data-background="/assets/img/hero/h1_hero.jpg">
             <!-- Mobile Menu -->
-            <div class="single-slider slider-height2 d-flex align-items-center" data-background="/assets/img/hero/category.jpg">
+
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>물품 수정</h2>
+                                <h2 style="font-family:굴림;color: black; margin-left:100px; margin-top:-250px ">물품 수정</h2>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
+
         <!-- slider Area End-->
 
-        <section class="checkout_area section_padding">
-            <div class="container">
-                <div class="returning_customer">
-                    <div class="row">
-                        <div class="col-lg">
-                            <h3>물품 정보</h3>
-                                <div class="col-md-12 form-group">
-                                    <img th:src="${merchandise.imgURL1.isEmpty()} ? '/assets/img/no_image.jpeg' : ${merchandise.imgURL1}" id="imgURL1" style="width: 300px;"/>
-                                    <img th:src="${merchandise.imgURL2.isEmpty()} ? '/assets/img/no_image.jpeg' : ${merchandise.imgURL2}" id="imgURL2" style="width: 300px;"/>
-                                    <img th:src="${merchandise.imgURL3.isEmpty()} ? '/assets/img/no_image.jpeg' : ${merchandise.imgURL3}" id="imgURL3" style="width: 300px;"/>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <input type="file" accept="image/*" class="form-control" id="uploadFiles" multiple name="uploadImgs" placeholder="이미" />
-                                    <button class="genric-btn success circle" id="uploadBtn">업로드</button>
-                                </div>
-                            <form class="row contact_form" action="/merchandise/register" method="post" novalidate="novalidate">
-                                <input type="hidden" name="imgURL1" th:value="${merchandise.imgURL1}"/>
-                                <input type="hidden" name="imgURL2" th:value="${merchandise.imgURL2}"/>
-                                <input type="hidden" name="imgURL3" th:value="${merchandise.imgURL3}"/>
-                                <input type="hidden" name="mno" th:value="${merchandise.mno}">
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="writer" name="writer" placeholder="작성자" th:value="${merchandise.writer}"/>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="제목" th:value="${merchandise.title}"/>
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <select class="country_select" id = "category" name ="category" th:field="*{merchandise.category}">
-                                        <option value="none">카테고리</option>
-                                        <option value="tools">공구</option>
-                                        <option value="kitchen_tool">주방용품</option>
-                                        <option value="etc">기타</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <select class="country_select" id = "lcategory" name ="lcategory" th:field="*{merchandise.lcategory}">
-                                        <option value="">위치</option>
-                                        <option value="ONE_ROOM_FRONT">정문원룸</option>
-                                        <option value="ONE_ROOM_BACK">후문원룸</option>
-                                        <option value="DORMITORY_CHUNGWOON">기숙사-청운</option>
-                                        <option value="DORMITORY_NOAK">기숙사-노악</option>
-                                        <option value="DORMITORY_CHANGJO">기숙사-창조</option>
-                                        <option value="DORMITORY_KYUNGAE">기숙사-경애</option>
-                                        <option value="DORMITORY_KUNMEYON">기숙사-근면</option>
-                                        <option value="DORMITORY_JAJU">기숙사-자주</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <select class="country_select" id = "state" name = "state" th:field="*{merchandise.state}">
-                                        <option value="none">상태</option>
-                                        <option value="rent">대여</option>
-                                        <option value="share">나눔</option>
-                                        <option value="sell">판매</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <input type="text" class="form-control" id="price" name="price" placeholder="가격" th:value="${merchandise.price}"/>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <textarea class="form-control" name="content" id="content" rows="1"
-                                              placeholder="글" style="resize:none;height: 500px;" th:text="${merchandise.content}"></textarea>
-                                </div>
-                                <button class="genric-btn success circle" type="submit">완료</button>
-                            </form>
+            <section class="checkout_area section_padding">
+                <div class="container">
+                    <div class="returning_customer">
+                        <div class="row">
+                            <div class="col-lg">
+                                <h3 style="font-family:굴림;color: black; ">물품 정보</h3>
+                                    <div class="col-md-12 form-group">
+                                        <img th:src="${merchandise.imgURL1.isEmpty()} ? '/assets/img/no_image.jpeg' : ${merchandise.imgURL1}" id="imgURL1" style="width: 300px;"/>
+                                        <img th:src="${merchandise.imgURL2.isEmpty()} ? '/assets/img/no_image.jpeg' : ${merchandise.imgURL2}" id="imgURL2" style="width: 300px;"/>
+                                        <img th:src="${merchandise.imgURL3.isEmpty()} ? '/assets/img/no_image.jpeg' : ${merchandise.imgURL3}" id="imgURL3" style="width: 300px;"/>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <input type="file" accept="image/*" class="form-control" id="uploadFiles" multiple name="uploadImgs" placeholder="이미" />
+                                        <button class="genric-btn success circle" id="uploadBtn">업로드</button>
+                                    </div>
+                                <form class="row contact_form" action="/merchandise/register" method="post" novalidate="novalidate">
+                                    <input type="hidden" name="imgURL1" th:value="${merchandise.imgURL1}"/>
+                                    <input type="hidden" name="imgURL2" th:value="${merchandise.imgURL2}"/>
+                                    <input type="hidden" name="imgURL3" th:value="${merchandise.imgURL3}"/>
+                                    <input type="hidden" name="mno" th:value="${merchandise.mno}">
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="writer" name="writer" placeholder="작성자" th:value="${merchandise.writer}"/>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <input type="text" class="form-control" id="title" name="title" placeholder="제목" th:value="${merchandise.title}"/>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <select class="country_select" id = "category" name ="category" th:field="*{merchandise.category}">
+                                            <option value="none">카테고리</option>
+                                            <option value="tools">공구</option>
+                                            <option value="kitchen_tool">주방용품</option>
+                                            <option value="etc">기타</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <select class="country_select" id = "lcategory" name ="lcategory" th:field="*{merchandise.lcategory}">
+                                            <option value="">위치</option>
+                                            <option value="ONE_ROOM_FRONT">정문원룸</option>
+                                            <option value="ONE_ROOM_BACK">후문원룸</option>
+                                            <option value="DORMITORY_CHUNGWOON">기숙사-청운</option>
+                                            <option value="DORMITORY_NOAK">기숙사-노악</option>
+                                            <option value="DORMITORY_CHANGJO">기숙사-창조</option>
+                                            <option value="DORMITORY_KYUNGAE">기숙사-경애</option>
+                                            <option value="DORMITORY_KUNMEYON">기숙사-근면</option>
+                                            <option value="DORMITORY_JAJU">기숙사-자주</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <select class="country_select" id = "state" name = "state" th:field="*{merchandise.state}">
+                                            <option value="none">상태</option>
+                                            <option value="rent">대여</option>
+                                            <option value="share">나눔</option>
+                                            <option value="sell">판매</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <input type="text" class="form-control" id="price" name="price" placeholder="가격" th:value="${merchandise.price}"/>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <textarea class="form-control" name="content" id="content" rows="1"
+                                                  placeholder="글" style="resize:none;height: 500px;" th:text="${merchandise.content}"></textarea>
+                                    </div>
+                                    <button class="genric-btn success circle" type="submit">완료</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </th:block>
 </th:block>
 
