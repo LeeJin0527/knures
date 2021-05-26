@@ -1,4 +1,8 @@
 <!doctype html>
+<link
+        rel="stylesheet"
+        href="https://unpkg.com/swiper/swiper-bundle.min.css"
+/>
 <html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
     <th:block th:replace="~{/layout/main :: setContent(~{this::content} )}">
         <th:block th:fragment="content">
@@ -57,42 +61,46 @@
                     <div class="single-slider slider-height" data-background="/assets/img/backmain.jpeg">
                         <div class="container">
                             <div class="row d-flex align-items-center justify-content-between">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-none d-md-block">
-                                    <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                        <img src="/assets/img/main7.png" alt="">
+                                <div class="col-xl-8 col-lg-6 col-md-6 col-sm-6 d-none d-md-block">
+<!--                                    <div class="hero__img" data-animation="bounceIn" data-delay=".4s">-->
+<!--                                        <img src="/assets/img/main7.png" alt="">-->
+<!--                                        <div class="swiper-container mySwiper">-->
+                                            <div class="hero__img">
+                                                <div class="swiper-container mySwiper">
 
-                                    </div>
+                                                    <div class="swiper-wrapper">
+
+                                                        <div class="swiper-slide"> <img src="/assets/img/main1.png"></div>
+                                                        <div class="swiper-slide"> <img src="/assets/img/main2.png"></div>
+                                                        <div class="swiper-slide"> <img src="/assets/img/main3.png"></div>
+                                                        <div class="swiper-slide"> <img src="/assets/img/main4.png"></div>
+                                                        <div class="swiper-slide"> <img src="/assets/img/main5.png"></div>
+
+
+
+                                                    </div>
+                                                    <div class="swiper-button-next"></div>
+                                                    <div class="swiper-button-prev"></div>
+                                                </div>
+
+                                            </div>
 
                                 </div>
-                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8">
-                                    <div class="hero__caption">
-                                        <span data-animation="fadeInRight" data-delay=".4s" style="font-family: 'Nanum Pen Script'">상주캠퍼스내</span>
-                                        <h1 data-animation="fadeInRight" data-delay=".6s">Rental <br> Service</h1>
-                                        <p data-animation="fadeInRight" data-delay=".8s" style="font-size:50px; font-family: 'Nanum Pen Script'">지금 바로 만나보세요!</p>
-                                        <!-- Hero-btn -->
-                                    </div>
+                                <div class="hero__caption">
+                                    <span data-animation="fadeInRight" data-delay=".4s" style="font-family: 'Nanum Pen Script'">상주캠퍼스내</span>
+                                    <h1 data-animation="fadeInRight" data-delay=".6s">Rental <br> Service</h1>
+                                    <p data-animation="fadeInRight" data-delay=".8s" style="font-size:50px; font-family: 'Nanum Pen Script'">지금 바로 만나보세요!</p>
+                                    <!-- Hero-btn -->
                                 </div>
+
+
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="single-slider slider-height" data-background="/assets/img/backmain.jpeg">
-                        <div class="container">
-                            <div class="row d-flex align-items-center justify-content-between">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-none d-md-block">
-                                    <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                        <img src="/assets/img/main1.png">
-                                        <img src="/assets/img/main2.png">
-                                    </div>
-                                </div>
-                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8">
-                                    <div class="hero__caption">
-                                        <span data-animation="fadeInRight" data-delay=".4s">상주캠퍼스내</span>
-                                        <h1 data-animation="fadeInRight" data-delay=".6s">Rental <br>Service</h1>
-                                        <p data-animation="fadeInRight" data-delay=".8s" >지금 바로 만나보세요!</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

@@ -22,7 +22,12 @@
             <link rel="stylesheet" href="/assets/css/slick.css">
             <link rel="stylesheet" href="/assets/css/nice-select.css">
             <link rel="stylesheet" href="/assets/css/style.css">
-   </head>
+            <link
+                    rel="stylesheet"
+                    href="https://unpkg.com/swiper/swiper-bundle.min.css"
+            />
+
+    </head>
 
    <body>
 
@@ -235,7 +240,7 @@
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
+                                    <p>경북대학교 상주캠퍼스 학생들을 위한 위치 기반 대여 서비스 플랫폼.</p>
                                </div>
                             </div>
                         </div>
@@ -246,7 +251,7 @@
                            <div class="footer-tittle">
                                <h4>Quick Links</h4>
                                <ul>
-                                   <li><a href="#">About</a></li>
+                                   <li><a href="#"> About us</a></li>
                                    <li><a href="#"> Offers & Discounts</a></li>
                                    <li><a href="#"> Get Coupon</a></li>
                                    <li><a href="#">  Contact Us</a></li>
@@ -287,7 +292,7 @@
                 <div class="col-xl-7 col-lg-7 col-md-7">
                     <div class="footer-copy-right">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            오시는길 : 경북 상주시 경상대로 2559 경북대학교상주캠퍼스 5호관<i class="ti-heart" aria-hidden="true"></i> <br>전화번호 : 053-950-5114 <i class="ti-heart" aria-hidden="true"></i>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>                   </div>
                 </div>
                  <div class="col-xl-5 col-lg-5 col-md-5">
@@ -344,6 +349,18 @@
         <script src="/assets/js/plugins.js"></script>
         <script src="/assets/js/main.js"></script>
 
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
     </body>
 </th:block>
 </html>
