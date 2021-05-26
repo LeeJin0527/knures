@@ -1,6 +1,8 @@
 package kr.ac.knu.knures.service;
 
+import kr.ac.knu.knures.constant.Category;
 import kr.ac.knu.knures.constant.LocationCategory;
+import kr.ac.knu.knures.constant.State;
 import kr.ac.knu.knures.dto.MerchandiseDTO;
 import kr.ac.knu.knures.entity.MemberEntity;
 import kr.ac.knu.knures.entity.MerchandiseEntity;
@@ -10,11 +12,12 @@ import java.util.List;
 public interface MerchandiseService {
     List<MerchandiseDTO> getListAll();
     List<String> getListNameAll();
-    List<String> getListCategoryAll();
     MerchandiseDTO getOne(Long mno);
     void register(MerchandiseDTO dto);
     void delete(MerchandiseDTO dto);
     List<MerchandiseDTO> findAllByIds(List<Long> ids);
+    List<MerchandiseDTO> findAllByState(State state);
+    List<MerchandiseDTO> findAllByCategory(Category category);
     List<MerchandiseDTO> findAllByLCategory(LocationCategory locationCategory);
     List<String> findAllByLCategoryToName(LocationCategory locationCategory);
 
@@ -63,8 +66,5 @@ public interface MerchandiseService {
         return dto;
     }
 
-    default String entityToCategory(MerchandiseEntity entity){
-        String dto = entity.getCategory();
-        return dto;
-    }
+
 }
