@@ -32,6 +32,9 @@ public class ViewController {
         return "index";
     }
 
+    @GetMapping("/aboutus")
+    public String displA() { return "aboutus"; }
+
     @GetMapping("/login")
     public String index_login(){
         String loginEmail = loginInfo.getEmail();

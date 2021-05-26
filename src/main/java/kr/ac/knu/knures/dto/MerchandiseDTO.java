@@ -1,6 +1,8 @@
 package kr.ac.knu.knures.dto;
 
+import kr.ac.knu.knures.constant.Category;
 import kr.ac.knu.knures.constant.LocationCategory;
+import kr.ac.knu.knures.constant.State;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,8 +22,8 @@ public class MerchandiseDTO {
     private String writerEmail;
     private String title; //title
     private Long price; //price
-    private String state;
-    private String category;
+    private State state;
+    private Category category;
     private LocationCategory lcategory;
     private String content;
     private String imgURL1;

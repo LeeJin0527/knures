@@ -1,6 +1,8 @@
 package kr.ac.knu.knures.controller;
 
+import kr.ac.knu.knures.constant.Category;
 import kr.ac.knu.knures.constant.LocationCategory;
+import kr.ac.knu.knures.constant.State;
 import kr.ac.knu.knures.dto.CommunityBoardReplyDTO;
 import kr.ac.knu.knures.dto.MerchandiseDTO;
 import kr.ac.knu.knures.dto.ReplyDTO;
@@ -138,6 +140,162 @@ public class MerchandiseController {
         for (LocationCategory dormitory : dormitoryList ) {
             dtos.addAll(service.findAllByLCategory(dormitory));
         }
+
+        List<WishListDTO> wishListDTOS;
+        if (loginInfo != null && loginInfo.getEmail() != null)
+        {
+            wishListDTOS = wishListService.findAllByMember(loginInfo.getEmail());
+
+            dtos = dtos.stream().map(m -> {
+                Optional<WishListDTO> res = wishListDTOS.stream()
+                        .filter(w -> w.getMno().equals(m.getMno()))
+                        .findFirst();
+
+                m.setWish(res.isPresent());
+                return m;
+            }).collect(Collectors.toList());
+        }
+
+        model.addAttribute("merchandises", dtos);
+        model.addAttribute("loginInfo", loginInfo);
+
+        return "list_merchandise";
+    }
+
+    @GetMapping("/category_tools_list")
+    public String categoryTList(Model model) {
+        List<MerchandiseDTO> dtos = new ArrayList<>();
+        dtos.addAll(service.findAllByCategory(Category.TOOLS));
+
+        List<WishListDTO> wishListDTOS;
+        if (loginInfo != null && loginInfo.getEmail() != null)
+        {
+            wishListDTOS = wishListService.findAllByMember(loginInfo.getEmail());
+
+            dtos = dtos.stream().map(m -> {
+                Optional<WishListDTO> res = wishListDTOS.stream()
+                        .filter(w -> w.getMno().equals(m.getMno()))
+                        .findFirst();
+
+                m.setWish(res.isPresent());
+                return m;
+            }).collect(Collectors.toList());
+        }
+
+        model.addAttribute("merchandises", dtos);
+        model.addAttribute("loginInfo", loginInfo);
+
+        return "list_merchandise";
+    }
+
+    @GetMapping("/category_kitchen_tool_list")
+    public String categoryKList(Model model) {
+        List<MerchandiseDTO> dtos = new ArrayList<>();
+        dtos.addAll(service.findAllByCategory(Category.KITCHEN_TOOL));
+
+        List<WishListDTO> wishListDTOS;
+        if (loginInfo != null && loginInfo.getEmail() != null)
+        {
+            wishListDTOS = wishListService.findAllByMember(loginInfo.getEmail());
+
+            dtos = dtos.stream().map(m -> {
+                Optional<WishListDTO> res = wishListDTOS.stream()
+                        .filter(w -> w.getMno().equals(m.getMno()))
+                        .findFirst();
+
+                m.setWish(res.isPresent());
+                return m;
+            }).collect(Collectors.toList());
+        }
+
+        model.addAttribute("merchandises", dtos);
+        model.addAttribute("loginInfo", loginInfo);
+
+        return "list_merchandise";
+    }
+
+    @GetMapping("/category_etc_list")
+    public String categoryEList(Model model) {
+        List<MerchandiseDTO> dtos = new ArrayList<>();
+        dtos.addAll(service.findAllByCategory(Category.ETC));
+
+        List<WishListDTO> wishListDTOS;
+        if (loginInfo != null && loginInfo.getEmail() != null)
+        {
+            wishListDTOS = wishListService.findAllByMember(loginInfo.getEmail());
+
+            dtos = dtos.stream().map(m -> {
+                Optional<WishListDTO> res = wishListDTOS.stream()
+                        .filter(w -> w.getMno().equals(m.getMno()))
+                        .findFirst();
+
+                m.setWish(res.isPresent());
+                return m;
+            }).collect(Collectors.toList());
+        }
+
+        model.addAttribute("merchandises", dtos);
+        model.addAttribute("loginInfo", loginInfo);
+
+        return "list_merchandise";
+    }
+
+    @GetMapping("/state_rent_list")
+    public String stateRList(Model model) {
+        List<MerchandiseDTO> dtos = new ArrayList<>();
+        dtos.addAll(service.findAllByState(State.RENT));
+
+        List<WishListDTO> wishListDTOS;
+        if (loginInfo != null && loginInfo.getEmail() != null)
+        {
+            wishListDTOS = wishListService.findAllByMember(loginInfo.getEmail());
+
+            dtos = dtos.stream().map(m -> {
+                Optional<WishListDTO> res = wishListDTOS.stream()
+                        .filter(w -> w.getMno().equals(m.getMno()))
+                        .findFirst();
+
+                m.setWish(res.isPresent());
+                return m;
+            }).collect(Collectors.toList());
+        }
+
+        model.addAttribute("merchandises", dtos);
+        model.addAttribute("loginInfo", loginInfo);
+
+        return "list_merchandise";
+    }
+
+    @GetMapping("/state_sell_list")
+    public String stateSList(Model model) {
+        List<MerchandiseDTO> dtos = new ArrayList<>();
+        dtos.addAll(service.findAllByState(State.SELL));
+
+        List<WishListDTO> wishListDTOS;
+        if (loginInfo != null && loginInfo.getEmail() != null)
+        {
+            wishListDTOS = wishListService.findAllByMember(loginInfo.getEmail());
+
+            dtos = dtos.stream().map(m -> {
+                Optional<WishListDTO> res = wishListDTOS.stream()
+                        .filter(w -> w.getMno().equals(m.getMno()))
+                        .findFirst();
+
+                m.setWish(res.isPresent());
+                return m;
+            }).collect(Collectors.toList());
+        }
+
+        model.addAttribute("merchandises", dtos);
+        model.addAttribute("loginInfo", loginInfo);
+
+        return "list_merchandise";
+    }
+
+    @GetMapping("/state_share_list")
+    public String stateShList(Model model) {
+        List<MerchandiseDTO> dtos = new ArrayList<>();
+        dtos.addAll(service.findAllByState(State.SHARE));
 
         List<WishListDTO> wishListDTOS;
         if (loginInfo != null && loginInfo.getEmail() != null)

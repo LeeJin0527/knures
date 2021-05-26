@@ -1,6 +1,8 @@
 package kr.ac.knu.knures.service;
 
+import kr.ac.knu.knures.constant.Category;
 import kr.ac.knu.knures.constant.LocationCategory;
+import kr.ac.knu.knures.constant.State;
 import kr.ac.knu.knures.dto.CommunityBoardDTO;
 import kr.ac.knu.knures.dto.MerchandiseDTO;
 import kr.ac.knu.knures.entity.MerchandiseEntity;
@@ -58,6 +60,18 @@ public class MerchandiseServiceImpl implements MerchandiseService{
     }
 
     @Override
+    public List<MerchandiseDTO> findAllByCategory(Category category) {
+        return repository.findAllByCategory(category).stream().map(entity -> entityToDto(entity, entity.getWriter()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MerchandiseDTO> findAllByState(State state) {
+        return repository.findAllByState(state).stream().map(entity -> entityToDto(entity, entity.getWriter()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<String> findAllByLCategoryToName(LocationCategory locationCategory) {
         return repository.findAllByLcategory(locationCategory).stream().map(entity -> entityToName(entity))
                 .collect(Collectors.toList());
@@ -69,11 +83,6 @@ public class MerchandiseServiceImpl implements MerchandiseService{
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public List<String> getListCategoryAll() {
-        return repository.findAll().stream().map(entity -> entityToCategory(entity))
-                .collect(Collectors.toList());
-    }
 
 
 }

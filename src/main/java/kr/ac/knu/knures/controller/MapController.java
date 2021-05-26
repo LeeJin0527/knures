@@ -27,23 +27,20 @@ public class MapController {
 
     @GetMapping("/map")
     public String List(Model model) {
-
-
-        LocationCategory ResidenceList[] = { LocationCategory.ONE_ROOM_FRONT,
-                LocationCategory.ONE_ROOM_BACK,
+        LocationCategory ResidenceList[] = { LocationCategory.DORMITORY_CHANGJO,
                 LocationCategory.DORMITORY_JAJU,
-                LocationCategory.DORMITORY_CHANGJO,
-                LocationCategory.DORMITORY_CHUNGWOON,
-                LocationCategory.DORMITORY_NOAK,
                 LocationCategory.DORMITORY_KUNMEYON,
-                LocationCategory.DORMITORY_KYUNGAE};
-        List<String> dtos = new ArrayList<>();
+                LocationCategory.DORMITORY_KYUNGAE,
+                LocationCategory.DORMITORY_NOAK,
+                LocationCategory.DORMITORY_CHUNGWOON,
+                LocationCategory.ONE_ROOM_FRONT,
+                LocationCategory.ONE_ROOM_BACK };
 
-        for (LocationCategory residence : ResidenceList ) {
-            dtos.addAll(merchandiseService.findAllByLCategoryToName(residence));
-        }
-        model.addAttribute("merchandises", dtos);
-
+        List<List<String>> dtos = new ArrayList<List<String>>();
+        int i = 0;
+        for (LocationCategory residence : ResidenceList )
+        { dtos.add(i, merchandiseService.findAllByLCategoryToName(residence));
+        model.addAttribute("merchandise"+i, dtos.get(i++)); }
 
         return "map";
     }
