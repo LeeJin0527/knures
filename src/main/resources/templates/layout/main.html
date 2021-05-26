@@ -22,6 +22,12 @@
             <link rel="stylesheet" href="/assets/css/slick.css">
             <link rel="stylesheet" href="/assets/css/nice-select.css">
             <link rel="stylesheet" href="/assets/css/style.css">
+            <link
+                rel="stylesheet"
+                href="https://unpkg.com/swiper/swiper-bundle.min.css"
+            />
+
+    </head>
    </head>
 
    <body>
@@ -40,111 +46,7 @@
     <!-- Preloader Start -->
 
     <header>
-        <!-- Header Start -->
-       <!--<div class="header-area">
-            <div class="main-header ">
-                <div class="header-top top-bg d-none d-lg-block">
-                   <div class="container-fluid">
-                       <div class="col-xl-12">
-                            <div class="row d-flex justify-content-between align-items-center">
-                                <div class="header-info-left d-flex">
-                                    <div class="flag">
-                                        <img src="/assets/img/icon/04-1.jpg" alt="">
-                                    </div>
-                                    <div class="select-this">
-                                        <ul class="contact-now">
-                                            <li><p style="font-size:40px;color : black;">
-                                                KNU Re-S</p></li>
 
-                                        </ul>
-
-                                    </div>
-                                    <ul>
-                                        <li> <p style="font-size:10px;color : white;">
-                                            +054- 530- 1459</p></li></ul>
-
-
-                                </div>
-
-                            </div>
-                       </div>
-                   </div>
-                </div>
-               <div class="header-bottom  header-sticky">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            &lt;!&ndash; Logo &ndash;&gt;
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
-                                <div class="logo">
-
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
-                                &lt;!&ndash; Main-menu &ndash;&gt;
-                                <div class="main-menu f-right d-none d-lg-block">
-                                    <nav>
-                                        <ul id="navigation">
-                                            <li><a href="/index"> <p style="font-size:20px;color : black;">Home</p></a></li>
-                                            <li><a href="/merchandise/list"> <p style="font-size:20px;color :  black;">물품목록</p></a></li>
-                                            <ul class="submenu">
-                                                <li><a href="product_list.html"> <p style="font-size:20px;color :  black;"> 물품별</p></a></li>
-                                                <li><a href="single-product.html"> <p style="font-size:20px;color :  black;"> 원룸별</p></a></li>
-                                                <li><a href="single-product.html"> <p style="font-size:20px;color :  black;"> 기숙사별</p></a></li>
-                                            </ul>
-                                            <li class="hot"><a href="/map"> <p style="font-size:20px;color :  black;">물품지도</p></a>
-                                                <ul class="submenu">
-                                                    <li><a href="product_list.html"> <p style="font-size:20px;color :  black;"> 물품별</p></a></li>
-                                                    <li><a href="single-product.html"> <p style="font-size:20px;color :  black;"> 원룸별</p></a></li>
-                                                    <li><a href="single-product.html"> <p style="font-size:20px;color :  black;"> 기숙사별</p></a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="/Community/list"><p style="font-size:20px;color :  black;">커뮤니티</p></a>
-                                            </li>
-
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3 fix-card">
-                                <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
-                                    <li class="d-none d-xl-block">
-                                        <div class="form-box f-right ">
-                                            <input type="text" name="Search" placeholder="Search products">
-                                            <div class="search-icon">
-                                                <i class="fas fa-search special-tag"></i>
-                                            </div>
-                                        </div>
-                                     </li>
-                                    <li class=" d-none d-xl-block">
-                                        <div class="favorit-items" onclick="location.href='/wish/wishlist'">
-                                            <i class="far fa-heart"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="shopping-card">
-                                            <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-                                        </div>
-                                    </li>
-                                   <li class="d-none d-lg-block">
-                                       <th:block th:if="${loginInfo != null and loginInfo.email != null}">
-                                           <a href="/logout" class="btn header-btn">Sign out</a>
-                                       </th:block>
-                                       <th:block th:unless="${loginInfo != null and loginInfo.email != null}">
-                                           <a href="/login" class="btn header-btn">Sign in</a>
-                                       </th:block>
-                                   </li>
-                                </ul>
-                            </div>
-                            &lt;!&ndash; Mobile Menu &ndash;&gt;
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-            </div>
-       </div>-->
         <div class="header-area">
             <div class="main-header ">
                 <div class="header-bottom  header-sticky" data-background="/assets/img/backmain.jpeg">
@@ -235,7 +137,7 @@
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
+                                    <p>경북대학교 상주캠퍼스 학생들을 위한 <br>위치 기반 대여 서비스 플랫폼 .</p>
                                </div>
                             </div>
                         </div>
@@ -284,7 +186,7 @@
                 <div class="col-xl-7 col-lg-7 col-md-7">
                     <div class="footer-copy-right">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+   오시는길 : 경북 상주시 경상대로 2559 경북대학교 상주캠퍼스 5호관<i class="ti-heart" aria-hidden="true"></i><br> 전화번호:053-950-5114<i class="ti-heart" aria-hidden="true"></i>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>                   </div>
                 </div>
                  <div class="col-xl-5 col-lg-5 col-md-5">
@@ -340,6 +242,17 @@
 		<!-- Jquery Plugins, main Jquery -->
         <script src="/assets/js/plugins.js"></script>
         <script src="/assets/js/main.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
 
     </body>
 </th:block>
