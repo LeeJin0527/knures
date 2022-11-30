@@ -2,7 +2,7 @@
 
 ## 생활용품 대여 서비스( 공구 , 주방용품 등)
 
-### 프로젝트명 : KNURES (knu rental-share service)
+### 프로젝트명 : KNURES (knu rental-share, sell Service)
 
 1.프로젝트 기획하기
 
@@ -60,9 +60,21 @@
 
        당근 마켓 학교 버전
 
-      -> 웹뷰로 어플 형식으로 만들어도 좋을 듯 (안드로이드 연동)
+3. 테이블 설계
 
-##
+
+![스크린샷 2022-11-30 오전 11 27 11](https://user-images.githubusercontent.com/64263694/204692709-ef0f0541-6011-472d-b1a5-f6064086128d.png)
+
+4. Use Case Diagram 설계
+
+![스크린샷 2022-11-30 오전 11 25 27](https://user-images.githubusercontent.com/64263694/204692529-998d8342-bb8c-4665-ae38-0a299854708c.png)
+
+5. 사용기술
+Back-end: SpringBoot Framework,  Tomcat
+Front-end: HTML/CSS
+Data Base(ORM): MySQL, JPA
+ETC: Junit, Gradle, Git, H2
+
 
 3. 화면별 기능 리스트 작성하기
 
